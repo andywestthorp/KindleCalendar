@@ -1,0 +1,25 @@
+<svg width="600" height="800" xmlns="http://www.w3.org/2000/svg">
+ 
+  <title>Calendar</title>
+ <g font-family="DejaVu Sans" font-size="17">
+  <text id="svg_4"  x="30" y="50" font-size="35px">Calendar: TODAY</text>
+ 
+  <text id="svg_1"  x="30" y="100" font-weight="bold">hour0</text>
+  <text id="svg_15" x="30" y="150">Name0</text>
+
+  <text id="svg_11" x="30" y="200" font-weight="bold">hour1</text>
+  <text id="svg_16" x="30" y="250">Name1</text>
+
+  <text id="svg_12" x="30" y="300" font-weight="bold">hour2</text>
+  <text id="svg_17" x="30" y="350">Name2</text>
+
+  <text id="svg_13" x="30" y="400" font-weight="bold">hour3</text>
+  <text id="svg_18" x="30" y="450">Name3</text>
+
+  <text id="svg_14" x="30" y="500" font-weight="bold">hour4</text>
+  <text id="svg_19" x="30" y="550">Name4</text>
+
+  <text id="svg_20" x="30" y="600">AllDay0</text>
+  <text id="svg_21" x="30" y="650">AllDay1</text>
+ </g>
+</svg>

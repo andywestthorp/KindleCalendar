@@ -1,0 +1,30 @@
+<svg width="600" height="800" xmlns="http://www.w3.org/2000/svg">
+ <g id="svg_22" transform="scale(3.25) translate(5.055 20.166)">ICON_ONE</g>
+ <title>Weather</title>
+ <g id="weather" font-family="DejaVu Sans">
+  <text id="svg_2"  x="30" y="50" font-size="35px">TODAY</text>
+  <text id="svg_3"  x="400" y="120" font-size="35px">Max:</text>
+  <text id="svg_6"  x="530" y="209" font-size="80px" text-anchor="end">HIGH_ONE</text>
+  <text id="svg_7"  x="530" y="182" font-size="50px">°C</text>
+  <text id="svg_8"  x="400" y="275" font-size="35px">Min:</text>
+  <text id="svg_9"  x="530" y="359" font-size="80px" text-anchor="end">LOW_ONE</text>
+  <text id="svg_10" x="530" y="333" font-size="50px">°C</text>
+ </g>
+  <title>Calendar</title>
+ <g font-family="DejaVu Sans" font-size="17">
+  <text id="svg_4"  x="30" y="460" font-size="35px">Calendar today:</text>
+  <path id="svg_5"  d="M 340 450 v 300" fill="black" stroke="black"/>
+  <text id="svg_1"  x="30" y="530" font-weight="bold">hour0</text>
+  <text id="svg_11" x="30" y="580" font-weight="bold">hour1</text>
+  <text id="svg_12" x="30" y="630" font-weight="bold">hour2</text>
+  <text id="svg_13" x="30" y="680" font-weight="bold">hour3</text>
+  <text id="svg_14" x="30" y="730" font-weight="bold">hour4</text>
+  <text id="svg_15" x="170" y="530">Name0</text>
+  <text id="svg_16" x="170" y="580">Name1</text>
+  <text id="svg_17" x="170" y="630">Name2</text>
+  <text id="svg_18" x="170" y="680">Name3</text>
+  <text id="svg_19" x="170" y="730">Name4</text>
+  <text id="svg_20" x="350" y="530">AllDay0</text>
+  <text id="svg_21" x="350" y="580">AllDay1</text>
+ </g>
+</svg>
