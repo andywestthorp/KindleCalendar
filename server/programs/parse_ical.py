@@ -106,7 +106,6 @@ print("Writing the text file")
 # Write the Calendar details to the text file
 f = open("Cal.txt","w")
 
-count = 0
 print("Writing today's events to the file")
 
 f.write("Upcoming calendar events\n")
