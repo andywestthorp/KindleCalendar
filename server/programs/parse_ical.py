@@ -36,6 +36,19 @@ for event in events:
     niceDay = event["DTSTART"].dt.strftime("%a")
     niceTime = event["DTSTART"].dt.strftime("%H%M")
     name = str(event["SUMMARY"])
+
+    # Bug fix...
+    # Nice modern computers use fancy left and right quotes but that causes crashes
+    # So if your event is something along the lines of ...Watch "The Longest Day"  
+    # the program will crash.
+    # So we need to fix this by replacing the nicely styled quotes 
+    # with the more boring basic quotes
+    
+    left_quote_name=name.replace(chr(8220), chr(34))
+    # Swapped the left quote for " now to the right but save a variable...
+    name=left_quote_name.replace(chr(8221), chr(34))
+
+
     print(start, name)
     normal_events.append([start,name, day, niceTime, niceDay])
 
