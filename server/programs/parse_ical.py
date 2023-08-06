@@ -1,77 +1,88 @@
+
 from icalendar import Calendar
-import datetime
-from datetime import timedelta
 import urllib.request
 import time
+from datetime import datetime, timedelta, date
 import codecs
+import recurring_ical_events
 
 print("Downloading the ICS file")
 
-# Your private ical URL
+# You will need to add your private ical URL, 
+# if you are using Google Calendar,please see:
+# https://support.google.com/calendar/answer/37648?hl=en#zippy=%2Cget-your-calendar-view-only
+#
+#
 
 ICAL_URL = ""
 
 urllib.request.urlretrieve(ICAL_URL, "basic.ics")
 
+
 cal = Calendar.from_ical(open('basic.ics','rb').read())
 
-all_day_events = []
 normal_events = []
 
-print("Analysiing the file")
-for component in cal.walk('vevent'):
 
-    #Offset from GMT timezone depending on Calendar provider (hours = x)
-    delta = timedelta(hours = 0)
+start_date = datetime.now()
+end_date =  datetime.now() + timedelta(days=28)
 
-    date_start = component['DTSTART'].dt + delta
+events = recurring_ical_events.of(cal).between(start_date, end_date)
 
-    #Check if it is today
-    if( date_start.timetuple().tm_yday == datetime.datetime.now().timetuple().tm_yday ):
-        if date_start.timetuple().tm_year == datetime.datetime.now().timetuple().tm_year:
+for event in events:
 
-            #Check if is not  all day (It does have time so datetime works)
-            if ( type(date_start) is datetime.datetime ):
-                print("Got  an event for today")
-                normal_events.append(component)
-            else:
-                all_day_events.append(component)
-                print("Got an All Day event")
+    start = str(event["DTSTART"].dt)
+    day = event["DTSTART"].dt.strftime("%d")
+    niceDay = event["DTSTART"].dt.strftime("%a")
+    niceTime = event["DTSTART"].dt.strftime("%H%M")
+    name = str(event["SUMMARY"])
+    print(start, name)
+    normal_events.append([start,name, day, niceTime, niceDay])
 
-#Sort by date
-normal_events.sort(key=lambda hour: hour['DTSTART'].dt)
+print("Got the information,now sorting it")
+normal_events.sort()
 
-# Finnish svg
+
+
+# Add data to the SVG file
 output = codecs.open('after-weather.svg', 'r', encoding='utf-8').read()
 
-print("Writing to the file")
+print("Creating the SVG file")
 
 count = 0
 
+start_date = str(start_date)
+
 for event in normal_events:
 
-    date_start = event['DTSTART'].dt + delta
+    date_start = event[0]
 
-    date_end = event['DTEND'].dt + delta
+    #Check that this is today's event
+    if date_start[:10] == start_date[:10]:
 
-    entry_date = date_start.strftime("%H:%M") + '-' +  date_end.strftime("%H:%M") 
-    entry_name = event['SUMMARY'] 
+        entry_time = event[3]
+        entry_name = event[1] 
 
-    # Escape special characters for rsvg-convert
-    entry_name.replace("&", "&amp;")
-    entry_name.replace("<", "&lt;")
-    entry_name.replace(">", "&gt;")
+        if entry_time == "0000":
+            entry_time="All day"
 
-    output = output.replace('hour'+ str(count) ,entry_date)
-    output = output.replace('Name' + str(count) ,entry_name)
+        # Escape special characters for rsvg-convert
+        entry_name.replace("&", "&amp;")
+        entry_name.replace("<", "&lt;")
+        entry_name.replace(">", "&gt;")
 
-    count+=1
-    #Just 5 tasks a day keeps the doctor away
+        # Replace place holders with real information
+        output = output.replace('hour'+ str(count) ,entry_time)
+        output = output.replace('Name' + str(count) ,entry_name)
+
+        count+=1
+
+    #Only have space on the screen for the first 5 tasks...
     if (count == 5):
 
         break
 
-#Erase unsused marks
+#Erase unsused placehlders
 output = output.replace('hour0' ,'')
 output = output.replace('hour1' ,'')
 output = output.replace('hour2' ,'')
@@ -89,4 +100,55 @@ output = output.replace('Name4' ,'')
 # Write output
 codecs.open('almost_done.svg', 'w', encoding='utf-8').write(output)
 
-print("Screen complete...")
+print("SVG Image Complete")
+
+print("Writing the text file")
+# Write the Calendar details to the text file
+f = open("Cal.txt","w")
+
+count = 0
+print("Writing today's events to the file")
+
+f.write("Upcoming calendar events\n")
+f.write("========================\n")
+f.write("\n")
+
+previous_day=str(normal_events[0])
+previous_day=previous_day[2:12]
+print("Previous day = ",previous_day)
+
+for event in normal_events:
+
+    entry_date = str(event[0])
+
+
+    if len(entry_date) > 10: 
+        # Chop duration as not really needed
+        entry_date = entry_date[:10]
+
+    print(entry_date)
+
+    txt_day = str(event[2])
+    txt_time = str(event[3])
+    txt_day_value = str(event[4])
+    # Checking for a new day - add a line to separate
+    if entry_date != previousDay:
+ 
+       #Draw a line
+        f.write("____________________________\n")
+        f.write(txt_day_value+" ")
+        f.write(txt_day+"\n\n")
+        previous_day = entry_date
+  
+    entry_name = event[1] 
+
+    # Write the details to the file
+    if txt_time=="0000":
+        f.write('All day event  \n')
+    else:
+        f.write(txt_time+"  ")
+    
+    f.write(entry_name+"\n")
+
+f.close()
+print("All done!")

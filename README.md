@@ -7,7 +7,12 @@ This is based on the work of Pablo Jiménez Mateo  https://github.com/pablojimen
 
 It also used code from Matt Healy https://github.com/lankybutmacho/web-to-kindle-heroku/tree/main
 
-This version combines the above to make a simple screen display showing weather and calendar events but it also creates a file called events.txt which can be viewed to show four weeks worth of upcoming calendar events.
+I had an old kindle knocking about in a drawer and thought it would be nice to use the screen to show upcoming calendar events for today. 
+
+Obviously, I wasn't the first person to think of this and I am grateful to Pablo and Matthew for their work.
+
+I have modified Pablo's script to add all day and recurring events and I have added an extra feature to create a text file of the next 4 week's worth of calendar events.
+
 
 Feel free to copy and use as you wish.
 
