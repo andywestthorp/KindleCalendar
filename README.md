@@ -13,8 +13,11 @@ Obviously, I wasn't the first person to think of this and I am grateful to Pablo
 
 I have modified Pablo's script to add all day and recurring events and I have added an extra feature to create a text file of the next 4 week's worth of calendar events.
 
+After using the calendar for a while I decided to modify things. I found tha the calendar feature was not that useful, so I have remived it and rotated the screen into "Landscape" mode. 
+
+This allows for a today view on teh left hand side and an upcoming events view to the right.
 
 Feel free to copy and use as you wish.
 
 Andy Westthorp
-5th August 2023
+29th August 2023
