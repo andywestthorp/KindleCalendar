@@ -13,7 +13,7 @@ Obviously, I wasn't the first person to think of this and I am grateful to Pablo
 
 I have modified Pablo's script to add all day and recurring events and I have added an extra feature to create a text file of the next 4 week's worth of calendar events.
 
-crontab e
+crontab -e
 
 */10 * * * * /home/pi/kindle/server/launch.sh
 
