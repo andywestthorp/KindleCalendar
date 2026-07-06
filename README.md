@@ -1,4 +1,7 @@
 # KindleCalendar
+
+![Photo of Kindle](screenshot.png)
+
 Show your iCal on your old kindle
 
 Acknowledgements
