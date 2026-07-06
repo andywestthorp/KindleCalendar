@@ -1,6 +1,6 @@
 # KindleCalendar
 
-![Photo of Kindle](screenshot.png)
+![Photo of Kindle](code/eventstext.png)
 
 Show your iCal on your old kindle
 
