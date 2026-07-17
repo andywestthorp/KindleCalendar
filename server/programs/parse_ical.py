@@ -8,7 +8,8 @@ from icalendar import Calendar
 import recurring_ical_events
 
 # --- Configuration ---
-ICAL_URL = "https://calendar.google.com/calendar/ical/qq50na1h7t2h12j3p5qhntqphs%40group.calendar.google.com/private-6b90ee1476f62c7bdb66975e80cefa6b/basic.ics"
+ICAL_URL = ""
+# --- Add your ical link above ---
 
 
 # --- Helper Functions ---
